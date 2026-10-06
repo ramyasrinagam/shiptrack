@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ShipTrack ERP - Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+    <script>
+        function setCreds(email) {
+            document.getElementById('email').value = email;
+            // Password is fixed as password123 everywhere
+            document.getElementById('pass').value = 'password123';
+        }
+    </script>
+</head>
+<body class="login-body">
+    <div class="login-card">
+        <h2>🚀 ShipTrack ERP</h2>
+        <p class="subtitle">Multi-Role Logistics Portal</p>
+        
+        {% if error %}<div class="error-msg">{{ error }}</div>{% endif %}
+
+        <!-- Explicit visible box so anyone can see the credentials directly on screen -->
+        <div style="background: #e8f4fd; border: 1.5px dashed #2a5298; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-size: 0.85em; color: #1e3c72; text-align: left;">
+            📌 <strong>Hackathon Demo Info (Visible to All):</strong><br>
+            • Password (Same for all): <strong style="color: #d9534f; font-size: 1.1em;">password123</strong><br>
+            • OTP Code: <strong style="color: #d9534f; font-size: 1.1em;">4829</strong>
+        </div>
+
+        <form action="/login" method="POST" class="login-form">
+            <label>Gmail Address:</label>
+            <input type="email" id="email" name="email" placeholder="Click a role below..." required>
+            
+            <label>Password:</label>
+            <!-- Pre-filled password so it's right there -->
+            <input type="password" id="pass" name="password" value="password123" required>
+            
+            <button type="submit" class="btn-primary" style="margin-top: 5px;">Proceed to OTP</button>
+        </form>
+
+        <div class="quick-fill-section">
+            <p class="helper-title">💡 <strong>Click any role below to select Gmail:</strong></p>
+            <div class="role-pills">
+                <div class="pill" onclick="setCreds('customer.logistics@gmail.com')">
+                    👤 Customer
+                </div>
+                <div class="pill" onclick="setCreds('manager.head@gmail.com')">
+                    👑 Manager
+                </div>
+                <div class="pill" onclick="setCreds('driver.agent@gmail.com')">
+                    🚚 Driver
+                </div>
+                <div class="pill" onclick="setCreds('support.helpdesk@gmail.com')">
+                    🎧 Support
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
