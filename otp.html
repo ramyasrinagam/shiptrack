@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify OTP - ShipTrack</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body class="login-body">
+    <div class="login-card" style="text-align: center;">
+        <h2>🔐 Security Verification</h2>
+        <p class="subtitle">Enter the 4-digit OTP code sent to your device.</p>
+        
+        {% if error %}<div class="error-msg">{{ error }}</div>{% endif %}
+
+        <form action="/verify-otp" method="POST" class="login-form">
+            <input type="text" name="otp" maxlength="4" placeholder="••••" style="text-align: center; font-size: 24px; letter-spacing: 8px;" required autofocus>
+            <button type="submit" class="btn-primary" style="margin-top: 15px; width: 100%;">Verify OTP</button>
+        </form>
+        <p class="otp-hint" style="margin-top: 20px;">💡 Use Code: <strong>4829</strong></p>
+    </div>
+</body>
+</html>
